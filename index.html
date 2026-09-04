@@ -3,66 +3,121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#0b0e14">
+<meta name="theme-color" content="#0b1020">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="算力远征">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-180.png">
-<title>算力远征</title>
+<title>算力远征 V0.4</title>
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;height:100%;background:#080a0f;color:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif;overflow:hidden}button{font:inherit}#app{height:100%;max-width:520px;margin:auto;background:linear-gradient(#121722,#090b10);padding:calc(16px + env(safe-area-inset-top)) 16px calc(14px + env(safe-area-inset-bottom));position:relative}.screen{display:none;height:100%;flex-direction:column}.active{display:flex}.center{justify-content:center;text-align:center}.logo{font-size:64px}.title{font-size:29px;font-weight:900}.sub{color:#8f9aaa;font-size:12px;margin-top:4px}.hero{margin:25px 0;padding:28px 16px;border:1px solid #2a3342;border-radius:25px;background:radial-gradient(circle at 50% 0,#29384d,#151a23 55%,#10131a);box-shadow:0 20px 50px #0008}.power{font-size:66px;font-weight:950}.power span{font-size:24px;color:#80defe}.big{font-size:18px;font-weight:800}.desc{font-size:13px;line-height:1.7;color:#aab3c1;margin-top:9px}.bottom{margin-top:auto;display:grid;gap:10px}.btn{width:100%;min-height:54px;border:0;border-radius:17px;background:#2873f0;color:#fff;font-weight:850;font-size:17px}.btn.secondary{background:#202735}.top{display:flex;justify-content:space-between;align-items:center}.pill{background:#1a202c;border:1px solid #2b3545;border-radius:99px;padding:7px 11px;font-size:13px}.map{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:15px 0}.node{height:48px;border-radius:14px;background:#171d27;border:1px solid #293342;display:flex;align-items:center;justify-content:center;font-size:19px}.node.done{opacity:.4}.node.now{border-color:#72d8ff;box-shadow:0 0 0 2px #72d8ff22}.card{background:#151a23;border:1px solid #283140;border-radius:18px;padding:13px}.label{font-size:12px;color:#8995a6}.routes{display:grid;gap:9px;margin-top:9px}.route{min-height:70px;text-align:left;padding:11px 13px;border-radius:17px;border:1px solid #303948;background:#171d27;color:#fff;display:flex;align-items:center;gap:12px}.route:active,.op:active,.btn:active{transform:scale(.98)}.routeIcon{font-size:27px;width:40px;text-align:center}.routeName{font-weight:850}.routeDesc{font-size:11px;color:#9da8b8;margin-top:3px}.enemy{margin:13px 0;padding:19px;border-radius:24px;background:linear-gradient(145deg,#201923,#14171f);border:1px solid #3a2d3a;text-align:center}.enemyIcon{font-size:55px}.enemyName{font-size:20px;font-weight:900}.enemyHp{font-size:12px;color:#c4cbd5;margin:4px}.bar{height:8px;background:#282f3a;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:#72d8ff;width:0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.value{font-size:22px;font-weight:900;margin-top:4px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:7px}.op{min-height:74px;border-radius:16px;border:1px solid #354050;background:#1a202a;color:#fff;font-size:27px;font-weight:950}.op small{display:block;font-size:9px;color:#909aaa}.log{height:64px;overflow:auto;background:#0f131a;border-radius:13px;padding:7px 9px;color:#a0abb9;font-size:11px;line-height:1.55;margin-top:7px}.equip{display:flex;gap:6px;overflow:auto;padding-top:7px}.tag{white-space:nowrap;padding:6px 8px;border-radius:11px;background:#1b2230;border:1px solid #2b3546;font-size:10px}.modal{position:absolute;inset:0;background:#0009;display:none;align-items:flex-end;z-index:5}.modal.show{display:flex}.sheet{width:100%;background:#151a23;border-radius:24px 24px 0 0;padding:18px 15px calc(15px + env(safe-area-inset-bottom));border-top:1px solid #303948}.reward{padding:12px;border-radius:15px;background:#1b2230;margin:7px 0}.small{font-size:12px;color:#98a4b4;line-height:1.6}.score{font-size:52px;font-weight:950}
+:root{--bg:#080c19;--panel:#101831;--text:#eef3ff;--muted:#94a4c9;--blue:#5b85ff;--red:#ff5c79;--gold:#ffd56a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button{font:inherit;color:inherit}.app{width:min(100%,520px);margin:auto;min-height:100vh;padding:calc(12px + env(safe-area-inset-top)) 14px calc(22px + env(safe-area-inset-bottom));background:radial-gradient(circle at top,#162249 0,#0b1125 36%,#080c19 75%)}
+.top{display:flex;justify-content:space-between;align-items:center}.logo{font-weight:950;font-size:21px}.ver{font-size:11px;color:var(--muted);margin-top:2px}.pill{font-size:12px;background:#182342;border:1px solid #334873;padding:7px 10px;border-radius:999px}
+.card{background:linear-gradient(180deg,#111a34,#0d152b);border:1px solid #293a62;border-radius:20px;padding:15px;margin:10px 0;box-shadow:0 12px 32px #0006}
+.enemyHead{display:flex;justify-content:space-between;align-items:center}.enemyName{font-size:18px;font-weight:900}.enemyType{font-size:12px;color:var(--muted)}.hpOuter{height:13px;border-radius:99px;background:#29324c;overflow:hidden;margin-top:11px}.hpInner{height:100%;background:linear-gradient(90deg,#ff446c,#ff7a62)}
+.targetWrap{text-align:center;margin:13px 0 5px}.targetLabel{color:var(--muted);font-size:12px}.target{font-size:46px;font-weight:1000}.timer{text-align:center;font-size:29px;font-weight:950}.timer.warn{color:var(--gold)}
+.rope{height:5px;background:#27314c;border-radius:99px;overflow:hidden;margin:7px 10px 13px}.ropeFill{height:100%;background:linear-gradient(90deg,#62eab1,#ffd56a,#ff5c79)}
+.expr{min-height:60px;border:1px dashed #46618f;background:#0a1124;border-radius:15px;padding:12px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:7px;font-size:22px;font-weight:900}
+.token{padding:3px 7px;border-radius:8px;background:#192644}.hint{text-align:center;color:var(--muted);font-size:12px;line-height:1.45;margin-top:9px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.numBtn{height:61px;border-radius:14px;background:#1b2c56;border:1px solid #416098;font-size:25px;font-weight:950}.numBtn.used{opacity:.24}.ops{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:10px}.opBtn{height:51px;border-radius:14px;background:#293a64;border:1px solid #536c9f;font-size:25px;font-weight:950}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.action{height:49px;border-radius:14px;border:1px solid #3a4d78;background:#17213d;font-weight:850}.primary{background:#4d79f7}.danger{background:#351d2a}.status{min-height:23px;text-align:center;font-size:13px;color:#c5d2ef;margin-top:8px}
+.statGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.stat{background:#0a1227;border-radius:13px;text-align:center;padding:9px 4px}.stat b{display:block;font-size:17px}.stat span{font-size:10px;color:var(--muted)}.rule{font-size:12px;color:#a9b7d8;line-height:1.65}.rule strong{color:#fff}
+.overlay{position:fixed;inset:0;background:#050812ef;display:none;align-items:center;justify-content:center;padding:22px;z-index:10}.modal{width:min(460px,100%);background:#111a34;border:1px solid #3b5080;border-radius:23px;padding:22px;text-align:center}.modal h2{margin:0}.big{font-size:48px;font-weight:1000;margin:7px 0}.desc{font-size:13px;color:var(--muted);line-height:1.55}.equip{display:none;margin-top:12px}.equip button{width:100%;padding:12px;margin:6px 0;border-radius:13px;border:1px solid #3d5689;background:#172542;text-align:left}.equip b{display:block}.equip span{font-size:11px;color:var(--muted)}
 </style>
 </head>
 <body>
-<div id="app">
-<section id="home" class="screen active center">
-<div><div class="logo">⚡</div><div class="title">算力远征</div><div class="sub">iPhone PWA · V0.3</div></div>
-<div class="hero"><div class="power">10<span> ⚡</span></div><div class="big">你的算力，就是你的生命与力量</div><div class="desc">选择运算路线，自动计算结果；战斗时直接点击运算卡。<br>简单的四则运算，也可以玩出策略。</div></div>
-<div class="bottom"><button class="btn" onclick="start()">开始远征</button><button class="btn secondary" onclick="how()">怎么玩</button></div>
+<div class="app">
+<div class="top"><div><div class="logo">⚡ 算力远征</div><div class="ver">V0.4 · 解谜战斗版</div></div><div class="pill" id="floorPill"></div></div>
+<section class="card">
+<div class="enemyHead"><div><div class="enemyName" id="enemyName"></div><div class="enemyType" id="enemyType"></div></div><div class="pill">全数字</div></div>
+<div class="hpOuter"><div class="hpInner" id="hpBar"></div></div>
+<div class="targetWrap"><div class="targetLabel">🎯 目标数</div><div class="target" id="target"></div></div>
+<div class="timer" id="timer"></div><div class="rope"><div class="ropeFill" id="ropeFill"></div></div>
+<div class="expr" id="expr"></div>
+<div class="hint">使用全部数字，每个数字只能用一次。按正常优先级：先乘除，后加减；除法必须整除。</div>
 </section>
-
-<section id="map" class="screen">
-<div class="top"><div><div class="title" style="font-size:22px">算力远征</div><div class="sub">选择下一站</div></div><div class="pill">⚡ <b id="mp">10</b></div></div>
-<div class="map" id="nodes"></div><div class="card"><div class="label">当前装备</div><div class="equip" id="eq"></div></div>
-<div style="font-size:18px;font-weight:900;margin-top:12px">下一站去哪里？</div><div class="routes" id="routes"></div>
+<section class="card">
+<div class="nums" id="nums"></div><div class="ops" id="ops"></div>
+<div class="actions"><button class="action" onclick="undo()">↩ 撤销</button><button class="action danger" onclick="clearExpr()">清空</button></div>
+<div class="actions"><button class="action primary" onclick="attack()">⚔️ 提交攻击</button><button class="action" onclick="skipProblem()">🔄 换一题</button></div>
+<div class="status" id="status"></div>
 </section>
-
-<section id="battle" class="screen">
-<div class="top"><div><div class="title" style="font-size:22px">战斗</div><div class="sub" id="floor">第1层</div></div><div class="pill">连击 ×<b id="combo">0</b></div></div>
-<div class="enemy"><div class="enemyIcon" id="ei">🦠</div><div class="enemyName" id="en">数据病毒</div><div class="enemyHp" id="eh">HP 20</div><div class="bar"><i id="eb"></i></div></div>
-<div class="grid2"><div class="card"><div class="label">我的算力</div><div class="value">⚡ <span id="bp">10</span></div></div><div class="card"><div class="label">本次伤害</div><div class="value" id="dmg">—</div></div></div>
-<div class="label" style="margin-top:9px">运算卡 · 点击使用</div><div class="cards" id="ops"></div><div class="log" id="log"></div>
-<button class="btn secondary" style="margin-top:7px" onclick="defend()">🛡️ 稳定运行（恢复算力）</button>
-</section>
-
-<section id="result" class="screen center">
-<div><div style="font-size:58px" id="ri">🏆</div><div class="title" id="rt">远征成功！</div><div class="sub" id="rs"></div></div>
-<div class="hero"><div class="label">最终算力</div><div class="score" id="fp">0</div><div class="desc" id="rd"></div></div>
-<div class="bottom"><button class="btn" onclick="start()">再来一次</button><button class="btn secondary" onclick="show('home')">返回首页</button></div>
-</section>
-
-<div id="modal" class="modal" onclick="closeM(event)"><div class="sheet" onclick="event.stopPropagation()"><h2>怎么玩</h2><div class="reward"><b>① 选路线</b><div class="small">＋稳定成长　×爆发成长　－高风险　÷特殊收益</div></div><div class="reward"><b>② 打怪</b><div class="small">点击 ＋ × − ÷ 运算卡，算力会变化并对敌人造成伤害。</div></div><div class="reward"><b>③ 连击</b><div class="small">连续使用 × 会形成连击，获得更高收益。</div></div><div class="reward"><b>④ 最终 Boss</b><div class="small">通过 8 层后挑战零号病毒。</div></div><button class="btn" style="margin-top:7px" onclick="hideM()">开始游戏</button></div></div>
+<section class="card"><div class="statGrid"><div class="stat"><b id="score">0</b><span>分数</span></div><div class="stat"><b id="combo">0</b><span>连击</span></div><div class="stat"><b id="shield">1</b><span>护盾</span></div><div class="stat"><b id="best">0</b><span>最高分</span></div></div></section>
+<section class="card rule"><strong>玩法：</strong>把给出的数字通过 ＋ − × ÷ 精确组合成目标数。答对击败敌人，答错受惩罚；倒计时结束则本关失败。每两关可选装备，后期数字更多、目标更大、时间更短。</section>
 </div>
+
+<div class="overlay" id="overlay"><div class="modal"><h2 id="modalTitle"></h2><div class="big" id="modalBig"></div><div class="desc" id="modalDesc"></div><div class="equip" id="equipBox"></div><button class="action primary" id="continueBtn" style="width:100%;margin-top:15px" onclick="continueGame()">继续远征</button></div></div>
+
 <script>
-const $=x=>document.getElementById(x);let g={best:+localStorage.getItem('math_best')||0};
-const equips=[["超频芯片","×结果额外增强"],["加速电池","＋额外获得算力"],["数据护盾","战斗开始获得算力"],["连锁处理器","×连击更强"],["精准算法","−不会归零"],["安全除法","÷向上取整"]];
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$(id).classList.add('active')}
-function start(){g={power:10,floor:0,equip:[],enemy:null,combo:0,last:0,best:g.best};show('map');map()}
-function map(){$('mp').textContent=Math.floor(g.power);$('nodes').innerHTML=Array.from({length:9},(_,i)=>`<div class="node ${i<g.floor?'done':''} ${i===g.floor?'now':''}">${i===8?'👑':i<g.floor?'✓':i+1}</div>`).join('');$('eq').innerHTML=g.equip.length?g.equip.map(e=>`<span class="tag">🔧 ${e[0]}</span>`).join(''):'<span class="tag">暂无装备</span>';let a=[['＋','加法节点','稳定增加算力','add'],['×','乘法节点','高风险高收益','mul'],['−','减法节点','牺牲算力换奖励','sub'],['÷','除法节点','随机倍率','div']];$('routes').innerHTML=a.map(x=>`<button class="route" onclick="route('${x[3]}')"><div class="routeIcon">${x[0]}</div><div><div class="routeName">${x[1]}</div><div class="routeDesc">${x[2]}</div></div></button>`).join('')}
-function route(t){if(t==='add')g.power+=r(5,10);if(t==='mul')g.power=Math.max(1,Math.floor(g.power*(1.35+Math.random()*.7)));if(t==='sub')g.power=Math.max(1,g.power-r(2,6));if(t==='div')g.power=Math.max(1,Math.ceil(g.power/(.55+Math.random()*.9)));g.floor++;if(g.floor>=8){boss();return}if(g.floor>=2&&Math.random()<.35){give();map();reward();return}battle()}
-function battle(){let a=[['🦠','数据病毒',18+g.floor*4],['👾','小型病毒',14+g.floor*3],['🧱','防火墙',25+g.floor*5],['🧲','吸收病毒',20+g.floor*4],['🪞','镜像病毒',22+g.floor*4]],e=a[r(0,a.length-1)];g.enemy={icon:e[0],name:e[1],hp:e[2],max:e[2]};g.combo=0;g.last=0;if(g.equip.some(x=>x[0]==='数据护盾'))g.power+=4;show('battle');render();$('log').textContent='选择一个运算卡开始攻击。'}
-function boss(){g.enemy={icon:'👹',name:'零号病毒',hp:100+g.power*2,max:100+g.power*2,boss:true};g.combo=0;g.last=0;show('battle');render();$('floor').textContent='最终 Boss';$('log').textContent='零号病毒：你的算力终将归零。'}
-function render(){$('floor').textContent=g.enemy.boss?'最终 Boss':'第'+g.floor+'层';$('ei').textContent=g.enemy.icon;$('en').textContent=g.enemy.name;$('eh').textContent='HP '+Math.max(0,Math.floor(g.enemy.hp))+' / '+g.enemy.max;$('eb').style.width=Math.max(0,g.enemy.hp/g.enemy.max*100)+'%';$('bp').textContent=Math.max(0,Math.floor(g.power));$('combo').textContent=g.combo;$('dmg').textContent=g.last?Math.floor(g.last):'—';$('ops').innerHTML=['+','×','−','÷'].map(o=>`<button class="op" onclick="op('${o}')">${o}<small>${o==='+'?'稳定':o==='×'?'爆发':o==='−'?'削弱':'特殊'}</small></button>`).join('')}
-function op(o){if(g.enemy.hp<=0)return;let b=g.power,a=b,d=0;if(o==='+'){a=b+r(3,7)+(g.equip.some(x=>x[0]==='加速电池')?3:0);d=a-b+2;g.combo=0}if(o==='×'){let m=1.2+Math.random()*.9;if(g.equip.some(x=>x[0]==='超频芯片'))m*=1.2;g.combo++;if(g.equip.some(x=>x[0]==='连锁处理器'))m*=1+Math.min(.8,g.combo*.12);a=Math.max(1,Math.floor(b*m));d=Math.max(3,a-b+g.combo*2)}if(o==='−'){let c=r(3,8);a=Math.max(g.equip.some(x=>x[0]==='精准算法')?1:0,b-c);d=c+r(4,8);g.combo=0}if(o==='÷'){let q=.45+Math.random()*.85;a=Math.max(1,g.equip.some(x=>x[0]==='安全除法')?Math.ceil(b/q):Math.floor(b/q));d=Math.max(2,Math.abs(a-b)+3);g.combo=0}g.power=a;g.last=d;g.enemy.hp-=d;log(`${b} ${o} → ${a}，造成 ${Math.floor(d)} 点伤害`);if(g.enemy.hp<=0){g.enemy.hp=0;render();setTimeout(win,220);return}let hit=r(1,Math.max(2,Math.floor(g.enemy.max*.08)));g.power-=hit;log(`${g.enemy.name}反击，算力 -${hit}`);if(g.power<=0){g.power=0;render();setTimeout(()=>end(false),220);return}render()}
-function defend(){let h=r(2,5);g.power+=h;g.combo=0;log(`稳定运行，算力 +${h}`);g.power-=r(1,3);if(g.power<=0){g.power=0;render();setTimeout(()=>end(false),220);return}render()}
-function win(){if(g.enemy.boss){end(true);return}g.floor++;if(g.floor>=8){boss();return}if(Math.random()<.45){give();map();reward()}else{show('map');map()}}
-function give(){let a=equips.filter(e=>!g.equip.some(x=>x[0]===e[0]));if(a.length)g.equip.push(a[r(0,a.length-1)])}
-function reward(){let e=g.equip[g.equip.length-1];$('modal').querySelector('.sheet').innerHTML=`<h2>获得装备 🎁</h2><div class="reward"><b>🔧 ${e[0]}</b><div class="small">${e[1]}</div></div><button class="btn" style="margin-top:8px" onclick="hideM()">继续远征</button>`;$('modal').classList.add('show')}
-function end(win){let s=Math.floor(g.power);if(s>g.best){g.best=s;localStorage.setItem('math_best',s)}$('ri').textContent=win?'🏆':'💥';$('rt').textContent=win?'远征成功！':'算力耗尽';$('rs').textContent=win?'你击败了零号病毒':'这次远征失败了';$('fp').textContent=s;$('rd').textContent=`通过 ${win?8:g.floor} 层 · 获得装备 ${g.equip.length} 件 · 历史最高算力 ${g.best}`;show('result')}
-function log(t){let x=$('log');x.innerHTML+=`<div>${t}</div>`;x.scrollTop=x.scrollHeight}
-function r(a,b){return Math.floor(Math.random()*(b-a+1))+a}function how(){$('modal').classList.add('show')}function hideM(){$('modal').classList.remove('show');if($('map').classList.contains('active'))map()}function closeM(e){if(e.target.id==='modal')hideM()}
-if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+const stages=[
+{n:3,time:32,min:10,max:35,name:'防火墙哨兵',type:'普通敌人'},
+{n:3,time:28,min:15,max:55,name:'数据病毒',type:'普通敌人'},
+{n:4,time:26,min:20,max:90,name:'吸收病毒',type:'普通敌人'},
+{n:4,time:23,min:25,max:130,name:'镜像病毒',type:'精英敌人'},
+{n:4,time:20,min:35,max:180,name:'高速病毒',type:'精英敌人'},
+{n:5,time:19,min:40,max:260,name:'混沌防火墙',type:'精英敌人'},
+{n:5,time:17,min:50,max:420,name:'零号病毒',type:'Boss'},
+{n:6,time:15,min:70,max:700,name:'零号病毒·核心',type:'最终Boss'}];
+let floor=1,score=0,combo=0,shield=1,best=Number(localStorage.getItem('mf04best')||0);
+let problem,expr=[],used=[],remaining=0,interval,locked=false,hp=100,bonusTime=0,safeMistake=false,divisionBonus=false,pendingEquip=false,failed=false;
+const $=id=>document.getElementById(id),rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,choice=a=>a[rand(0,a.length-1)];
+
+function constructProblem(){
+ const cfg=stages[floor-1];
+ for(let t=0;t<1500;t++){
+  const nums=Array.from({length:cfg.n},()=>rand(2,12)),order=[...nums].sort(()=>Math.random()-.5);
+  let v=order[0],ok=true;
+  for(let i=1;i<order.length;i++){
+   const x=order[i],o=[];
+   if(v+x<=900)o.push(v+x); if(v-x>0)o.push(v-x); if(v*x<=900)o.push(v*x); if(v%x===0&&v/x>0)o.push(v/x);
+   if(!o.length){ok=false;break} v=choice(o);
+  }
+  if(ok&&v>=cfg.min&&v<=cfg.max)return{nums,target:v,time:cfg.time+bonusTime};
+ }
+ return{nums:[2,3,4],target:14,time:30+bonusTime};
+}
+function startFloor(){clearInterval(interval);locked=false;failed=false;hp=100;expr=[];used=[];problem=constructProblem();remaining=problem.time;render();startTimer()}
+function render(){
+ const cfg=stages[floor-1];$('floorPill').textContent=`第 ${floor} / 8 关`;$('enemyName').textContent=cfg.name;$('enemyType').textContent=cfg.type;$('target').textContent=problem.target;$('hpBar').style.width=hp+'%';
+ $('timer').textContent=remaining.toFixed(1);$('timer').className='timer'+(remaining<=5?' warn':'');$('ropeFill').style.width=Math.max(0,remaining/problem.time*100)+'%';
+ $('score').textContent=score;$('combo').textContent=combo;$('shield').textContent=shield;$('best').textContent=best;
+ $('expr').innerHTML=expr.length?expr.map(x=>`<span class="token">${x}</span>`).join(''):'请选择第一个数字';
+ const n=$('nums');n.innerHTML='';problem.nums.forEach((x,i)=>{let b=document.createElement('button');b.className='numBtn'+(used.includes(i)?' used':'');b.textContent=x;b.onclick=()=>pickNum(i);n.appendChild(b)});
+ const o=$('ops');o.innerHTML='';['+','−','×','÷'].forEach(x=>{let b=document.createElement('button');b.className='opBtn';b.textContent=x;b.onclick=()=>pickOp(x);o.appendChild(b)});
+}
+function pickNum(i){if(locked||used.includes(i))return;let need=expr.length===0||['+','−','×','÷'].includes(expr.at(-1));if(!need)return say('先选运算符');used.push(i);expr.push(String(problem.nums[i]));render()}
+function pickOp(x){if(locked||!expr.length||['+','−','×','÷'].includes(expr.at(-1))||used.length>=problem.nums.length)return;expr.push(x);render()}
+function undo(){if(locked||!expr.length)return;let x=expr.pop();if(!['+','−','×','÷'].includes(x))used.pop();render()}
+function clearExpr(){if(!locked){expr=[];used=[];render()}}
+function skipProblem(){if(locked)return;combo=0;score=Math.max(0,score-30);startFloor();say('换题：-30 分，连击清零')}
+
+function evaluate(){
+ if(used.length!==problem.nums.length||expr.length!==problem.nums.length*2-1)return{ok:false,reason:'必须使用全部数字'};
+ const vals=[],ops=[];expr.forEach((x,i)=>(i%2===0?vals:ops).push(x));
+ let stack=[Number(vals[0])],low=[],usedDivision=false;
+ for(let i=0;i<ops.length;i++){let op=ops[i],x=Number(vals[i+1]);if(op==='×'||op==='÷'){let a=stack.pop();if(op==='÷'){usedDivision=true;if(x===0||a%x!==0)return{ok:false,reason:'除法必须整除'};stack.push(a/x)}else stack.push(a*x)}else{stack.push(x);low.push(op)}}
+ let total=stack[0];for(let i=0;i<low.length;i++)total=low[i]==='+'?total+stack[i+1]:total-stack[i+1];return{ok:true,value:total,usedDivision};
+}
+function attack(){
+ if(locked)return;let r=evaluate();if(!r.ok)return say('⚠️ '+r.reason);
+ if(r.value!==problem.target){combo=0;if(safeMistake){safeMistake=false;say(`🛡️ 容错挡住反击：${r.value} ≠ ${problem.target}`)}else if(shield>0){shield--;say(`🛡️ 护盾抵挡反击：${r.value} ≠ ${problem.target}`)}else{score=Math.max(0,score-50);say(`❌ ${r.value} ≠ ${problem.target}，-50 分`)}render();return}
+ locked=true;clearInterval(interval);hp=0;let gain=100+Math.floor(remaining*9)+combo*35;if(divisionBonus&&r.usedDivision)gain=Math.floor(gain*1.5);combo++;score+=gain;if(score>best){best=score;localStorage.setItem('mf04best',best)}render();pendingEquip=[2,4,6].includes(floor);openModal('攻击成功！','+'+gain,`剩余 ${remaining.toFixed(1)} 秒 · 连击 ×${combo}`,false)
+}
+function timeOut(){if(locked)return;locked=true;failed=true;clearInterval(interval);combo=0;openModal('时间耗尽','MISS','烧绳结束，重新挑战本关。',true)}
+function startTimer(){interval=setInterval(()=>{if(locked)return;remaining=Math.max(0,remaining-.1);render();if(remaining<=0)timeOut()},100)}
+function openModal(t,b,d,fail){$('modalTitle').textContent=t;$('modalBig').textContent=b;$('modalDesc').textContent=d;$('equipBox').style.display='none';$('equipBox').innerHTML='';$('continueBtn').textContent=fail?'重新挑战':'继续远征';if(pendingEquip&&!fail)showEquip();$('overlay').style.display='flex'}
+function showEquip(){
+ let all=[
+ {name:'⏱ 超频芯片',desc:'之后每关 +3 秒',apply:()=>bonusTime+=3},
+ {name:'🛡 容错模块',desc:'下一次算错不受惩罚',apply:()=>safeMistake=true},
+ {name:'🔋 备用护盾',desc:'立即获得 1 层护盾',apply:()=>shield++},
+ {name:'☢ 危险除法',desc:'用 ÷ 正确解题，得分 ×1.5',apply:()=>divisionBonus=true}
+ ].sort(()=>Math.random()-.5).slice(0,3);
+ let box=$('equipBox');box.style.display='block';all.forEach(e=>{let b=document.createElement('button');b.innerHTML=`<b>${e.name}</b><span>${e.desc}</span>`;b.onclick=()=>{e.apply();pendingEquip=false;box.innerHTML=`<div class="desc">已获得：<b>${e.name}</b></div>`};box.appendChild(b)})
+}
+function continueGame(){$('overlay').style.display='none';if(failed)return startFloor();if(pendingEquip){$('overlay').style.display='flex';return say('先选择一个装备')};if(floor>=8){floor=1;score=0;combo=0;shield=1;bonusTime=0;safeMistake=false;divisionBonus=false;startFloor();say('🎉 远征完成！开启新一轮')}else{floor++;startFloor()}}
+function say(t){$('status').textContent=t;setTimeout(()=>{if($('status').textContent===t)$('status').textContent=''},2200)}
+startFloor();if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 </script>
-</body>
-</html>
+</body></html>
